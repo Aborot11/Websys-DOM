@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Index</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f2f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: #ffffff;
+      width: 320px;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,.1);
+    }
+    .image-box {
+      width: 100%;
+      height: 200px;
+      background: #e0e0e0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #555;
+      border-radius: 4px;
+      margin-bottom: 10px;
+      font-size: 14px;
+      font-style: italic;
+    }
+    .info-box {
+      background: #f7f7f7;
+      min-height: 80px;
+      border-radius: 4px;
+      padding: 10px;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+    /* Side-by-side buttons */
+    .btns {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .btns button {
+      flex: 1; /* equal width */
+      padding: 6px 10px;
+      border: none;
+      background: #4caf50;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 13px;
+      transition: background 0.3s;
+    }
+    .btns button:hover {
+      background: #3e8e41;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="image-box" id="imageBox">Image Here</div>
+    
+    <div class="btns">
+      <button onclick="showImage()">Generate Image</button>
+      <button onclick="showInfo()">Generate Info</button>
+    </div>
+
+    <div class="info-box" id="infoBox">
+      Info will appear here
+    </div>
+  </div>
+
+  <script>
+    const students = [
+      { name: "Nagomo Yoichi", age: 28, course: "Criminology", img: "images.jpg" },
+      { name: "Uzuki K.", age: 27, course: "Architecture", img: "3.jpg" },
+      { name: "Osaragi Q.", age: 28, course: "Biology", img: "2.jpg" },
+      { name: "Sakamoto T.", age: 30, course: "Engineering", img: "4.jpg" }
+    ];
+
+    let current = null;
+
+    function showImage() {
+      const random = students[Math.floor(Math.random() * students.length)];
+      current = random;
+      const box = document.getElementById("imageBox");
+      box.innerHTML = `<img src="${random.img}" style="width:100%; height:100%; object-fit:cover; border-radius:4px;">`;
+    }
+
+    function showInfo() {
+      if (!current) {
+        alert("Generate an image first!");
+        return;
+      }
+      document.getElementById("infoBox").innerHTML = `
+        <b>Name:</b> ${current.name}<br>
+        <b>Age:</b> ${current.age}<br>
+        <b>Course:</b> ${current.course}
+      `;
+    }
+  </script>
+
+</body>
+</html>
